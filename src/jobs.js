@@ -12,6 +12,8 @@ function addJob(reminder) {
             id: reminder.id,
             cb: new cronJob( `00 ${time[1]} ${time[0]} ${date[2]} ${date[1]} *`, function() {
                 ipcRenderer.send('notify', reminder.message);
+                let updatedStorage = JSON.parse(localStorage.reminders).filter(r => r.id != reminder.id );
+                localStorage.reminders = JSON.stringify(updatedStorage);
             }, null, true)
         }
     );

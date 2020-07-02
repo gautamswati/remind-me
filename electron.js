@@ -1,4 +1,6 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, ipcMain } = require('electron');
+const notifier = require('node-notifier');
+
 
 function createWindow () {
   // Create the browser window.
@@ -14,4 +16,12 @@ function createWindow () {
   win.loadFile('dist/index.html')
 }
 
+ipcMain.on('notify', function(event, message) {
+  notifier.notify({
+    title: "Reminder",
+    message: message
+  });
+})
+
 app.whenReady().then(createWindow)
+

@@ -46,6 +46,10 @@
 <script>
 import HelloWorld from './components/HelloWorld.vue'
 import { Trash2Icon, ClockIcon } from 'vue-feather-icons'
+// import {addJob} from './jobs'; 
+
+const notifier = require('node-notifier');
+
 
 export default {
   name: 'App',
@@ -67,20 +71,25 @@ export default {
       e.preventDefault();
       const id = this.reminders.length ?
         this.reminders[this.reminders.length - 1].id + 1: 1;
-      this.reminders.push({
+      const newReminder = {
         "id": id, 
         "date" : this.date,
         "time": this.time,
         "message": this.message
-      });
+      }
+      this.reminders.push(newReminder);
       localStorage.reminders = JSON.stringify(this.reminders);
+      // addJob(newReminder);
+       notifier.notify({
+                title: "This is a notif",
+                message: "Hello, swati"
+            });
     },
     deleteReminder(id) {
       this.reminders = this.reminders.filter(item => item.id != id);
       localStorage.reminders = JSON.stringify(this.reminders);
     },
     getDate(dateString) {
-      console.log(dateString);
       return new Date(dateString).toLocaleDateString('en-GB');
     }
   },

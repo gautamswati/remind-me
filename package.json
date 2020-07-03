@@ -1,52 +1,54 @@
 {
-  "name": "remind-me",
-  "version": "0.1.0",
-  "private": true,
-  "main": "electron.js",
-  "scripts": {
-    "start": "electron .",
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "electron": "vue-cli-service build && electron ."
-  },
-  "dependencies": {
-    "core-js": "^3.6.5",
-    "cron": "^1.8.2",
-    "node-notifier": "^7.0.1",
-    "sqlite3": "^4.2.0",
-    "tailwindcss": "^1.4.6",
-    "vue": "^2.6.11"
-  },
-  "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.4.0",
-    "@vue/cli-plugin-eslint": "~4.4.0",
-    "@vue/cli-service": "~4.4.0",
-    "babel-eslint": "^10.1.0",
-    "electron": "^9.0.5",
-    "electron-rebuild": "^1.11.0",
-    "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^6.2.2",
-    "vue-feather-icons": "^5.0.0",
-    "vue-template-compiler": "^2.6.11"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
+    "name": "remind-me",
+    "version": "0.1.0",
+    "private": true,
+    "main": "electron.js",
+    "productName": "Remind Me",
+    "scripts": {
+        "electron": "vue-cli-service build && electron .",
+        "package-win": "vue-cli-service build && electron-packager . remind-me --overwrite --asar --platform=win32 --arch=x64 --icon=dist/icon.png --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName='Reminder App'",
+        "package-linux": "vue-cli-service build && electron-packager . remind-me  --overwrite --asar --platform=linux --arch=x64 --icon=dist/icon.png --prune=true --out=release-builds",
+        "create-debian-installer": "electron-installer-debian --src release-builds/remind-me-linux-x64/ --dest release-builds/ --arch amd64 --config debian.json"
     },
-    "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
-    ],
-    "parserOptions": {
-      "parser": "babel-eslint"
+    "dependencies": {
+        "core-js": "^3.6.5",
+        "tailwindcss": "^1.4.6",
+        "vue": "^2.6.11",
+        "node-notifier": "^7.0.1"
     },
-    "rules": {}
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead"
-  ]
+    "devDependencies": {
+        "@vue/cli-plugin-babel": "~4.4.0",
+        "@vue/cli-plugin-eslint": "~4.4.0",
+        "@vue/cli-service": "~4.4.0",
+        "babel-eslint": "^10.1.0",
+        "electron": "^9.0.5",
+        "electron-installer-debian": "^3.1.0",
+        "electron-packager": "^15.0.0",
+        "electron-rebuild": "^1.11.0",
+        "eslint": "^6.7.2",
+        "eslint-plugin-vue": "^6.2.2",
+        "node-cron": "^2.0.3",
+        "vue-feather-icons": "^5.0.0",
+        "vue-template-compiler": "^2.6.11",
+        "webpack": "^4.43.0"
+    },
+    "eslintConfig": {
+        "root": true,
+        "env": {
+            "node": true
+        },
+        "extends": [
+            "plugin:vue/essential",
+            "eslint:recommended"
+        ],
+        "parserOptions": {
+            "parser": "babel-eslint"
+        },
+        "rules": {}
+    },
+    "browserslist": [
+        "> 1%",
+        "last 2 versions",
+        "not dead"
+    ]
 }

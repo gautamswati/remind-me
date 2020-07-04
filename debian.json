@@ -1,0 +1,13 @@
+{
+    "dest": "release-builds/",
+    "icon": "dist/icon.png",
+    "categories": [
+      "Utility"
+    ],
+    "options": {
+        "description": "A basic reminder notification application"
+    },
+    "lintianOverrides": [
+      "changelog-file-missing-in-native-package"
+    ]
+  }

@@ -1,14 +1,14 @@
 <template>
     <div id="app">
-    	<h2 class="text-white text-center tracking-wide text-4xl mb-5">
-      		Remind Me<span class="text-blue-300">! </span> 
+        <h2 class="text-white text-center tracking-wide text-4xl mb-5">
+            Remind Me<span class="text-blue-300">! </span> 
 		</h2>
 		<form action="#" class="flex max-w-xl border border-white rounded-md flex-col p-10 space-y-3 justify-center m-auto">
 			<div class="flex space-x-5 items-baseline">
 				<label class="text-blue-300 text-2xl" for="message">To </label>
 				<input class="bg-transparent text-white border-white border-b w-full" 
 					type="text" name="message" id="message" v-model="message" autofocus
-					placeholder="try this out....">
+                >
 			</div>
 			<div class="flex">
 				<div class="flex space-x-4 w-1/2">
@@ -90,11 +90,9 @@ export default {
 			const inputTime = this.time.split(':');
 			const inputDate = this.date.split('-');
 			inputDate[1] = inputDate[1] === '01' ? '0' : inputDate[1] - 1;
-			const dateFromInput = new Date(inputDate[0], inputDate[1], inputDate[2], inputTime[0], inputTime[1]);
-			console.log(now, dateFromInput);
-			console.log(dateFromInput < now)
+            const dateFromInput = new Date(inputDate[0], inputDate[1], inputDate[2], inputTime[0], inputTime[1]);
+            
 			if( dateFromInput < now ) {
-				console.log("here");
 				this.error = "Invalid Date/ Time combination";
 				return false;
 			}

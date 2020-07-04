@@ -1,5 +1,6 @@
 const { app, BrowserWindow, ipcMain, Tray, Menu, screen } = require('electron');
 const notifier = require('node-notifier');
+const path = require('path');
 
 let window = null;
 
@@ -29,15 +30,9 @@ function createWindow () {
     window.loadFile('dist/index.html')
 }
 
-ipcMain.on('notify', function(event, message) {
-    notifier.notify({
-        title: "Reminder",
-        message: message
-    });
-})
 
 app.on('ready', () => {
-    tray = new Tray('public/icon.jpg');
+    tray = new Tray(path.join(__dirname, '/dist/icon.png'));
     const contextMenu = Menu.buildFromTemplate([
         {label: 'Show', click: () => {
             window.show();
@@ -52,3 +47,9 @@ app.on('ready', () => {
 })
 app.whenReady().then(createWindow)
 
+ipcMain.on('notify', function(event, message) {
+    notifier.notify({
+        title: "Reminder",
+        message: message,
+    });
+})

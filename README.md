@@ -1,24 +1,42 @@
 # remind-me
 
-## Project setup
+A desktop app for reminders
+
+![App Image](public/img/app.png)
+
+![Reminder Notification Image](public/img/reminder-notification.png)
+
+### Project setup
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Quick Start
 ```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
+npm run electron
 ```
 
-### Lints and fixes files
+### Create App for Windows
 ```
-npm run lint
+npm run package-win
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Find the executable at 
+
+```
+./release-builds/remind-me-win32-x64/remind-me.exe
+```
+
+### Create App for Linux
+```
+npm run package-linux && npm run create-debian-installer
+```
+
+Find the debain package at 
+```
+./release-builds/remind-me-linux-x64/remind-me_0.1.0_amd64.deb
+```
+
+### To-Do
+- [ ] Figure out the source of the huge size of this basic app (56MB :p)
+- [ ] Snooze Ability
